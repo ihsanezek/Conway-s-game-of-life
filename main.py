@@ -54,10 +54,11 @@ def compute_next_frame (frame):
     
     Returns
     -------
-    None.
+    frame
     
     """
     paded_frame = numpy.pad(frame, 1, mode="constant")
+    new_frame = numpy.zeros_like(frame)
     
     """
     # Étape 1 : 2 boucles for imbriquées pour parcourir la matrice avec bordure (zero padding) element par element.
@@ -67,7 +68,7 @@ def compute_next_frame (frame):
     #ici je définis ma matrice avec les bordures
     index_line, index_column = paded_frame.shape
 
-    # Parcourir la matrice en ligne et en colonne en prenant en compte le fait qu'il y ait des bordures de 0  
+    # je parcours la matrice en ligne et en colonne en prenant en compte le fait qu'il y ait des bordures de 0  
     for line in range (2, index_line - 2) : 
         for column in range (2, index_column - 2) :                                                  
             """
@@ -75,7 +76,6 @@ def compute_next_frame (frame):
             On fait appelle à la fonction (compute_number_neighbors)
             """
             total_living_neighboors = compute_number_neighbors(paded_frame, index_line, index_column)
-            new_frame = numpy.zeros_like(frame)
             
             """
              # Étape 3 : Pour chacun des éléments faire les tests (état de l'élément et son nombre de voisin) afin de voir
@@ -87,17 +87,12 @@ def compute_next_frame (frame):
                 if total_living_neighboors in [2, 3] : 
                     new_frame [line - 1, column - 1] = 1 #la cellule reste vivante
                 else :
-                    new_frame [line - 1, column - 1] = 0 #La cellule meurt
+                    new_frame [line - 1, column - 1] = 0 #La cellule meurt 
             else : 
                 if total_living_neighboors == 3 : 
-                    new_frame = [line - 1, column - 1] = 1 #La cellule qui était initiallement morte devient vivante car elle a exactement 3 voisins vivants 
-                
-                    
-                    
-                    
-                
-            
-    return frame
+                    new_frame [line - 1, column - 1] = 1 #La cellule qui était initiallement morte devient vivante car elle a exactement 3 voisins vivants 
+                         
+    return new_frame
 
 
 while True:
