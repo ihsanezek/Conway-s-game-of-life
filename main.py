@@ -35,7 +35,7 @@ def compute_number_neighbors (paded_frame, index_line, index_column) :
     neighboors_matrice = paded_frame[index_line - 1 : index_line + 2, index_column - 1 : index_column + 2]
     
     #On compte le nombre de voisins vivant sans oublier de retirer la cellule centrale
-    sum_neighboors = numpy.sum(neighboors_matrice) - paded_frame(index_line, index_column)
+    sum_neighboors = numpy.sum(neighboors_matrice) - paded_frame[index_line, index_column]
 
     return sum_neighboors
 
@@ -75,7 +75,7 @@ def compute_next_frame (frame):
             # Étape 2 : Pour chacun des éléments, calculez le nombre de voisins.
             On fait appelle à la fonction (compute_number_neighbors)
             """
-            total_living_neighboors = compute_number_neighbors(paded_frame, index_line, index_column)
+            total_living_neighboors = compute_number_neighbors(paded_frame, line, column)
             
             """
              # Étape 3 : Pour chacun des éléments faire les tests (état de l'élément et son nombre de voisin) afin de voir
