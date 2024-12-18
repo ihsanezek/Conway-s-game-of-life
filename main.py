@@ -65,19 +65,18 @@ def compute_next_frame (frame):
     """   
    
     #ici je définis ma matrice avec les bordures
-    number_of_line, number_of_columns = paded_frame.shape
+    index_line, index_column = paded_frame.shape
 
     # Parcourir la matrice en ligne et en colonne en prenant en compte le fait qu'il y ait des bordures de 0  
-    for line in range (2, number_of_line - 2) : 
-        for column in range (2, number_of_columns - 2) :  
+    for line in range (2, index_line - 2) : 
+        for column in range (2, index_column - 2) :                                                  
+            """
+            # Étape 2 : Pour chacun des éléments, calculez le nombre de voisins.
+            On fait appelle à la fonction (compute_number_neighbors)
+            """
+            total_living_neighboors = compute_number_neighbors(paded_frame, index_line, index_column)
             
-                                                  
-                                                
-    # L'étape 2 et 3 se font au cours de la même itération (attention à l'indentation !)
-    """
-    # Étape 2 : Pour chacun des éléments, calculez le nombre de voisins.
-    On fait appelle à la fonction (compute_number_neighbors)
-    """
+            
  
  
  
