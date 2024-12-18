@@ -75,18 +75,28 @@ def compute_next_frame (frame):
             On fait appelle à la fonction (compute_number_neighbors)
             """
             total_living_neighboors = compute_number_neighbors(paded_frame, index_line, index_column)
+            new_frame = numpy.zeros_like(frame)
             
+            """
+             # Étape 3 : Pour chacun des éléments faire les tests (état de l'élément et son nombre de voisin) afin de voir
+             si il y a des modifications à faire.
+             Si c'est le cas effectuez les modifications directement dans la matrices frame (Attention à l'indice
+             utilisé ! )
+            """
+            if paded_frame [line, column] == 1 :
+                if total_living_neighboors in [2, 3] : 
+                    new_frame [line - 1, column - 1] = 1 #la cellule reste vivante
+                else :
+                    new_frame [line - 1, column - 1] = 0 #La cellule meurt
+            else : 
+                if total_living_neighboors == 3 : 
+                    new_frame = [line - 1, column - 1] = 1 #La cellule qui était initiallement morte devient vivante car elle a exactement 3 voisins vivants 
+                
+                    
+                    
+                    
+                
             
- 
- 
- 
- 
-    """
-     # Étape 3 : Pour chacun des éléments faire les tests (état de l'élément et son nombre de voisin) afin de voir
-     si il y a des modifications à faire.
-     Si c'est le cas effectuez les modifications directement dans la matrices frame (Attention à l'indice
-     utilisé ! )
-    """
     return frame
 
 
