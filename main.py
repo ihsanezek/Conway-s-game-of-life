@@ -69,8 +69,8 @@ def compute_next_frame (frame):
     index_line, index_column = paded_frame.shape
 
     # je parcours la matrice en ligne et en colonne en prenant en compte le fait qu'il y ait des bordures de 0  
-    for line in range (2, index_line - 2) : 
-        for column in range (2, index_column - 2) :                                                  
+    for line in range (2, index_line-2) : 
+        for column in range (2, index_column-2) :                                                  
             """
             # Étape 2 : Pour chacun des éléments, calculez le nombre de voisins.
             On fait appelle à la fonction (compute_number_neighbors)
@@ -85,12 +85,12 @@ def compute_next_frame (frame):
             """
             if paded_frame [line, column] == 1 :
                 if total_living_neighboors in [2, 3] : 
-                    new_frame [line - 1, column - 1] = 1 #la cellule reste vivante
+                    new_frame [line-1, column-1] = 1 #la cellule reste vivante
                 else :
-                    new_frame [line - 1, column - 1] = 0 #La cellule meurt 
+                    new_frame [line-1, column-1] = 0 #La cellule meurt 
             else : 
                 if total_living_neighboors == 3 : 
-                    new_frame [line - 1, column - 1] = 1 #La cellule qui était initiallement morte devient vivante car elle a exactement 3 voisins vivants 
+                    new_frame [line-1, column-1] = 1 #La cellule qui était initiallement morte devient vivante car elle a exactement 3 voisins vivants 
                          
     return new_frame
 
